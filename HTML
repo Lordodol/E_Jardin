@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Jardin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">E-Jardin</h1>
+    <button id="menu-toggle" class="menu-button">☰</button>
+    <aside class="sidebar">
+      <ul>
+        <li><a href="#" id="home-button">Accueil</a></li>
+        <li><a href="#" id="plants-button">Mes Plantes</a></li>
+        <li><a href="#">Conseils</a></li>
+        <li><a href="#">À propos</a></li>
+      </ul>
+    </aside>
+
+    <div id="home-content">
+      <section class="weekly-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Lundi</th>
+              <th>Mardi</th>
+              <th>Mercredi</th>
+              <th>Jeudi</th>
+              <th>Vendredi</th>
+              <th>Samedi</th>
+              <th>Dimanche</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+      <section class="info-sections">
+        <div class="info-box">
+          <h2>Info plante</h2>
+          <p>Ajoutez des informations sur vos plantes ici.</p>
+        </div>
+        <div class="info-box">
+          <h2>Photo du jour</h2>
+          <div id="photo-container">
+            <video id="video" width="320" height="240" autoplay></video>
+            <button id="snap-button" class="action-button">Prendre une photo</button>
+            <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="plants-content" style="display: none;">
+      <h2>Mes Plantes</h2>
+      <button id="new-plant-button" class="action-button">Nouvelle Plante</button>
+      <div class="image-placeholder">
+        <p style="text-align: center; padding-top: 80px;">Image de votre plante ici</p>
+      </div>
+      <div id="connected-plant" class="connected-plant" style="display: none;">
+        <p id="plant-name"></p>
+        <p id="device-id"></p>
+      </div>
+    </div>
+
+    <div id="flower-selection" style="display: none;">
+      <h2>Sélectionnez une Fleur</h2>
+      <div class="flower-buttons">
+        <div class="flower-container">
+          <img src="https://i.imgur.com/7VYfeZY.jpeg" alt="Rose" class="flower-image">
+          <button class="flower-button" data-name="Rose">Rose</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/Qsk8dQP.jpeg" alt="Tulipe" class="flower-image">
+          <button class="flower-button" data-name="Tulipe">Tulipe</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/UdHGLwL.jpeg" alt="Lilas" class="flower-image">
+          <button class="flower-button" data-name="Lilas">Lilas</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/kIHTJE2.jpeg" alt="Lys" class="flower-image">
+          <button class="flower-button" data-name="Lys">Lys</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/D0dvNE3.jpeg" alt="Cœur saignant" class="flower-image">
+          <button class="flower-button" data-name="Cœur saignant">Cœur saignant</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/qFokUPt.jpeg" alt="Orchidée" class="flower-image">
+          <button class="flower-button" data-name="Orchidée">Orchidée</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/MpBaR2C.jpeg" alt="Pivoine" class="flower-image">
+          <button class="flower-button" data-name="Pivoine">Pivoine</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/WuhATGd.jpeg" alt="Iris" class="flower-image">
+          <button class="flower-button" data-name="Iris">Iris</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/cAHlmWY.jpeg" alt="Dahlia" class="flower-image">
+          <button class="flower-button" data-name="Dahlia">Dahlia</button>
+        </div>
+        <div class="flower-container">
+          <img src="https://i.imgur.com/mypTiyU.jpeg" alt="Violette" class="flower-image">
+          <button class="flower-button" data-name="Violette">Violette</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nouvelle fenêtre modale pour afficher la fleur choisie et le bouton de connexion -->
+    <div id="modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="selected-flower-name"></h2>
+        <button id="connect-button" class="action-button">Connecter Bluetooth</button>
+        <div id="available-devices" class="available-devices">
+          <h3>Appareils disponibles :</h3>
+          <ul id="device-list"></ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>
