@@ -192,9 +192,13 @@ body {
 /* Nouveau style pour le conteneur de la caméra */
 #photo-container {
   text-align: center; /* Centrer le contenu */
+  max-width: 100%; /* Assurez-vous que le conteneur ne dépasse pas la largeur de l'écran */
+  overflow: hidden; /* Cacher tout débordement */
 }
 
 #video {
+  width: 100%; /* Rendre la vidéo responsive */
+  height: auto; /* Maintenir les proportions */
   border: 2px solid #4CAF50; /* Bordure verte autour de la vidéo */
   border-radius: 5px; /* Coins arrondis */
 }
@@ -202,6 +206,8 @@ body {
 #canvas {
   display: block; /* Affichez le canevas après la capture */
   margin: 10px auto; /* Centre le canevas */
+  width: 100%; /* Rendre le canevas responsive */
+  height: auto; /* Maintenir les proportions */
   border: 2px solid #4CAF50; /* Bordure verte autour du canevas */
   border-radius: 5px; /* Coins arrondis */
 }
