@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('canvas');
   const snapButton = document.getElementById('snap-button');
 
+  // Sélection des éléments pour la section "Mes Plantes"
+  const plantNameElement = document.getElementById('plant-name'); // Élément pour afficher le nom de la plante  
+  const connectedPlant = document.getElementById('connected-plant'); // Section contenant les informations de la plante
+
   // Fonction pour activer la caméra  
   const startCamera = () => {
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -85,43 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       const flowerName = button.getAttribute('data-name');
       selectedFlowerName.textContent = flowerName; // Mettre à jour le nom de la fleur choisie  
+
+      // Afficher la plante sélectionnée dans la section "Mes Plantes"
+      plantNameElement.textContent = `Plante choisie : ${flowerName}`; // Mettre à jour le nom de la plante  
+      connectedPlant.style.display = 'block'; // Afficher le rectangle contenant les infos de la plante
+
       modal.style.display = 'block'; // Afficher le modal  
-      deviceList.innerHTML = ''; // Vider la liste des appareils
-      
-      // Récupérer les appareils Bluetooth  
-      navigator.bluetooth.getDevices()
-        .then(devices => {
-          devices.forEach(device => {
-            const listItem = document.createElement('li');
-            listItem.textContent = device.name || 'Unnamed Device';
-            deviceList.appendChild(listItem);
-          });
-        })
-        .catch(error => {
-          console.error('Erreur lors de la récupération des appareils Bluetooth :', error);
-        });
+      deviceList.innerHTML = ''; // Vider la liste des appareils  
     });
   });
 
   // Fermer le modal  
   closeButton.addEventListener('click', () => {
     modal.style.display = 'none'; // Cacher le modal  
-  });
-
-  // Fonction pour se connecter à un appareil Bluetooth  
-  connectButton.addEventListener('click', async () => {
-    try {
-      const device = await navigator.bluetooth.requestDevice({
-        filters: [{ services: ['battery_service'] }] // Modifier selon le service souhaité  
-      });
-      const deviceId = device.id; // Obtenir l'ID de l'appareil connecté  
-      // Afficher les informations de la plante et l'ID de l'appareil                    
-      plantNameElement.textContent = `Plante choisie : ${selectedFlowerName.textContent}`;
-      deviceIdElement.textContent = `ID de l'appareil : ${deviceId}`;
-      connectedPlant.style.display = 'block'; // Afficher le rectangle  
-    } catch (error) {
-      console.error('Erreur lors de la connexion Bluetooth :', error);
-    }
   });
 
   // Fermer la barre si on clique en dehors  
