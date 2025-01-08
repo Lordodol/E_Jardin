@@ -8,20 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeButton = document.getElementById('home-button');
   const plantsButton = document.getElementById('plants-button');
   const newPlantButton = document.getElementById('new-plant-button');
-  const modal = document.getElementById('modal');
-  const selectedFlowerName = document.getElementById('selected-flower-name');
-  const connectButton = document.getElementById('connect-button');
-  const deviceList = document.getElementById('device-list');
+  const plantListContainer = document.getElementById('connected-plant-list'); // Nouveau conteneur pour les plantes sélectionnées  
   const closeButton = document.querySelector('.close-button');
 
   // Variables pour la caméra  
   const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');
   const snapButton = document.getElementById('snap-button');
-
-  // Sélection des éléments pour la section "Mes Plantes"
-  const plantNameElement = document.getElementById('plant-name'); // Élément pour afficher le nom de la plante  
-  const connectedPlant = document.getElementById('connected-plant'); // Section contenant les informations de la plante
 
   // Fonction pour activer la caméra  
   const startCamera = () => {
@@ -88,25 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
   flowerButtons.forEach(button => {
     button.addEventListener('click', () => {
       const flowerName = button.getAttribute('data-name');
-      selectedFlowerName.textContent = flowerName; // Mettre à jour le nom de la fleur choisie  
+      
+      // Créer un rectangle pour afficher la plante choisie  
+      const plantBox = document.createElement('div');
+      plantBox.className = 'connected-plant'; // Appliquer la classe pour le style  
+      plantBox.innerHTML = `<p>${flowerName}</p>`; // Mettre à jour le contenu avec le nom de la plante  
+      plantListContainer.appendChild(plantBox); // Ajouter le rectangle au conteneur
 
-      // Afficher la plante sélectionnée dans la section "Mes Plantes"
-      plantNameElement.textContent = `Plante choisie : ${flowerName}`; // Mettre à jour le nom de la plante  
-      connectedPlant.style.display = 'block'; // Afficher le rectangle contenant les infos de la plante
-
-      // Rediriger vers l'interface "Mes Plantes"
-      homeContent.style.display = 'none';
-      flowerSelection.style.display = 'none'; // Cacher la sélection de fleurs  
+      // Afficher la section "Mes Plantes"
       plantsContent.style.display = 'block'; // Afficher la section "Mes Plantes"
-
-      modal.style.display = 'block'; // Afficher le modal  
-      deviceList.innerHTML = ''; // Vider la liste des appareils  
+      flowerSelection.style.display = 'none'; // Cacher la sélection de fleurs  
     });
-  });
-
-  // Fermer le modal  
-  closeButton.addEventListener('click', () => {
-    modal.style.display = 'none'; // Cacher le modal  
   });
 
   // Fermer la barre si on clique en dehors  
