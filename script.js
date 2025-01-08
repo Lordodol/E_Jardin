@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeButton = document.getElementById('home-button');
   const plantsButton = document.getElementById('plants-button');
   const newPlantButton = document.getElementById('new-plant-button');
-  const plantListContainer = document.getElementById('connected-plant-list'); // Nouveau conteneur pour les plantes sélectionnées  
-  const closeButton = document.querySelector('.close-button');
+  const plantListContainer = document.getElementById('connected-plant-list'); // Conteneur pour les plantes sélectionnées  
 
   // Variables pour la caméra  
   const video = document.getElementById('video');
@@ -81,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   flowerButtons.forEach(button => {
     button.addEventListener('click', () => {
       const flowerName = button.getAttribute('data-name');
+      console.log(`Plante choisie : ${flowerName}`); // Débogage : afficher le nom de la plante choisie
       
       // Créer un rectangle pour afficher la plante choisie  
       const plantBox = document.createElement('div');
