@@ -94,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
       plantNameElement.textContent = `Plante choisie : ${flowerName}`; // Mettre à jour le nom de la plante  
       connectedPlant.style.display = 'block'; // Afficher le rectangle contenant les infos de la plante
 
+      // Rediriger vers l'interface "Mes Plantes"
+      homeContent.style.display = 'none';
+      flowerSelection.style.display = 'none'; // Cacher la sélection de fleurs  
+      plantsContent.style.display = 'block'; // Afficher la section "Mes Plantes"
+
       modal.style.display = 'block'; // Afficher le modal  
       deviceList.innerHTML = ''; // Vider la liste des appareils  
     });
