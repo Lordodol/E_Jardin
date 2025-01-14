@@ -14,8 +14,7 @@
       <ul>
         <li><a href="#" id="home-button">Accueil</a></li>
         <li><a href="#" id="plants-button">Mes Plantes</a></li>
-        <li><a href="#">Conseils</a></li>
-        <li><a href="#">À propos</a></li>
+        <li><a href="#" id="about-button">À propos</a></li> <!-- Lien vers la section À propos -->
       </ul>
     </aside>
 
@@ -49,16 +48,39 @@
       
       <section class="info-sections">
         <div class="info-box">
-          <h2>Info plante</h2>
-          <p>Ajoutez des informations sur vos plantes ici.</p>
+          <h2>Conseils pour s'occuper de</h2>
+          <select id="plant-info-select">
+            <option value="">Sélectionnez une plante</option>
+            <option value="Rose">Rose</option>
+            <option value="Tulipe">Tulipe</option>
+            <option value="Lilas">Lilas</option>
+            <option value="Lys">Lys</option>
+            <option value="Cœur saignant">Cœur saignant</option>
+            <option value="Orchidée">Orchidée</option>
+            <option value="Pivoine">Pivoine</option>
+            <option value="Iris">Iris</option>
+            <option value="Dahlia">Dahlia</option>
+            <option value="Violette">Violette</option>
+          </select>
+          <p id="plant-care-tips" style="margin-top: 10px;">
+            Sélectionnez une plante pour voir les conseils.
+          </p>
         </div>
         <div class="info-box">
           <h2>Photo du jour</h2>
-           <div id="photo-container">
-            <video id="video" autoplay></video>
-             <canvas id="canvas"></canvas>
-  <button id="snap-button" class="action-button">Prendre une photo</button>
-</div>
+          <div id="photo-container">
+            <div id="preview-container">
+              <video id="video" autoplay></video>
+              <canvas id="canvas" style="display: none;"></canvas> <!-- Masquer le canevas par défaut -->
+            </div>
+            <button id="snap-button" class="action-button">Prendre une photo</button>
+            <button id="clear-button" class="action-button" style="display: none;">Effacer</button>
+            <button id="select-plant-button" class="action-button" style="display: none;">Sélectionner une plante</button>
+            <select id="plant-select" style="display: none;">
+              <option value="">Choisissez une plante</option>
+              <!-- Ajoutez des options dynamiquement -->
+            </select>
+          </div>
         </div>
       </section>
     </div>
@@ -69,6 +91,12 @@
       <div class="image-placeholder">
         <p style="text-align: center; padding-top: 80px;">Image de votre plante ici</p>
       </div>
+      
+      <div id="connected-plant-list" class="connected-plant-list" style="display: none;">
+        <h3>Plantes Connectées :</h3>
+        <div id="plant-list-container"></div>
+      </div>
+      
       <div id="connected-plant" class="connected-plant" style="display: none;">
         <p id="plant-name"></p>
         <p id="device-id"></p>
@@ -120,6 +148,33 @@
         </div>
       </div>
     </div>
+
+    <!-- Nouvelle fenêtre modale pour afficher la fleur choisie et le bouton de connexion -->
+    <div id="modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="selected-flower-name"></h2>
+        <button id="connect-button" class="action-button">Connecter Bluetooth</button>
+        <div id="available-devices" class="available-devices">
+          <h3>Appareils disponibles :</h3>
+          <ul id="device-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galerie de photos de la plante -->
+    <div id="plant-photo-gallery" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-button" id="close-gallery">&times;</span>
+        <h2>Photos de <span id="selected-plant-name-gallery"></span></h2>
+        <div id="photos-container"></div>
+      </div>
+    </div>
+
+    <!-- Section À propos -->
+    <section id="about-section" style="display: none; text-align: center; padding: 50px;">
+      <h1>Prototype</h1>
+    </section>
 
   </div>
   <script src="script.js" defer></script>
